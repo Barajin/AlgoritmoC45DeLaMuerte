@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.lang.Math;
+import java.lang.Object;
+import java.util.Arrays;
+import org.apache.*;
+
 
 public class MyC45 {
 
@@ -14,22 +18,22 @@ public class MyC45 {
 		String files[] = {"C:\\Users\\Jesús Barajas\\Desktop\\workspace\\c45\\C4.5\\data_sets\\datos.csv"};
 		Scanner scan;
 		
-		// start loop for all files HERE
+		
 		scan = new Scanner(new File(files[0]));
 		String headerLine = scan.nextLine();
 		String headers[]  = headerLine.split(",");
 		
-		// class index is assumed to be the last column
+		
 		int classIndex    = headers.length - 1;
 		int numAttributes = headers.length - 1;
 		
-		// store data set attributes
+		
 		Attribute attributes[] = new Attribute[numAttributes];
 		for(int x = 0; x < numAttributes; x++) {
 			attributes[x] = new Attribute(headers[x]);
 		}
 		
-		// for storing classes and class count
+		
 		List<String>  classes      = new ArrayList<String>();
 		List<Integer> classesCount = new ArrayList<Integer>();
 		
@@ -99,6 +103,10 @@ public class MyC45 {
 		System.out.println("outlock: " + outlock.gain);
 		
 		*/
+		String winner="";
+		double winnervalue=0.0;
+		List<Attribute> Listattributes = new ArrayList<>(Arrays.asList(attributes));
+		
 		
 		for(Attribute a : attributes){
 			System.out.println(a.toString());
@@ -110,14 +118,79 @@ public class MyC45 {
 			double testEntro = calcEntro(testCount);
 			a.setGain(testEntro,14);
 
-			System.out.println("Entropia  " + testEntro);
-			System.out.println(a.name +" "+ a.gain);
+			System.out.println("Entropia global " + testEntro);
+			System.out.println(a.name +" gain "+ a.gain);
 			
+			if(winnervalue<a.gain) {
+				winnervalue=a.gain;
+				winner=a.name;
+				
+			}
+		
+			
+
 		}
 		
+		System.out.println("first node :"+winner);
+		System.out.println(winnervalue);
+			
 		
-	}
+		
+		
+		for(int i=0;i<Listattributes.size();i++) {
+			
+			if(Listattributes.get(i).name==winner) {
+				Listattributes.remove(i);
+			}
+			
+				
+			}
+		//Transformar arrays en listas y listas en arrays
+		Attribute attributes2[] = new Attribute[numAttributes-1];
+		Listattributes.toArray(attributes2);
+		
+		
+		String winner2="";
+		double winnervalue2=0.0;
+		//Segunda iteracion
+		for(Attribute a : attributes2){
+			System.out.println(a.toString());
+			
+			List<Integer> testCount = new ArrayList<Integer>();
+			testCount.add(9);
+			testCount.add(5);
+
+			double testEntro = calcEntro(testCount);
+			a.setGain(testEntro,14);
+
+			System.out.println("Entropia global " + testEntro);
+			System.out.println(a.name +" gain "+ a.gain);
+			
+			if(winnervalue2<a.gain) {
+				winnervalue2=a.gain;
+				winner2=a.name;
+				
+			}
+		
+			
+
+		}
+		
+		System.out.println("Second node :"+winner);
+		System.out.println(winnervalue);
+			
+		
+		
+			
+}
+		
 	
+			
+				
+		
+		
+		
+		
 	
 	
 	
@@ -131,7 +204,7 @@ public class MyC45 {
 		}
 		
 		for(double d : classesCount){
-			temp = (-1 * (d/totalNumClasses)) * (Math.log((d/totalNumClasses)) / Math.log(2));
+			temp = Math.abs((-1 * (d/totalNumClasses)) * (Math.log((d/totalNumClasses)) / Math.log(2)));
 			Entro += temp;
 		}
 		return Entro;

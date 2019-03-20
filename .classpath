@@ -2,5 +2,10 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="lib" path="C:/Users/Jesús Barajas/Desktop/workspace/commons-lang3-3.8.1/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesús Barajas/Desktop/workspace/commons-lang3-3.8.1/commons-lang3-3.8.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesús Barajas/Desktop/workspace/commons-lang3-3.8.1/commons-lang3-3.8.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesús Barajas/Desktop/workspace/commons-lang3-3.8.1/commons-lang3-3.8.1-tests.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jesús Barajas/Desktop/workspace/commons-lang3-3.8.1/commons-lang3-3.8.1-test-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
